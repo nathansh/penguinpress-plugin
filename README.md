@@ -8,7 +8,7 @@ The contents of this directory should be placed in your plugins directory (usual
 
 ## Function reference
 
-Please refer to this project's function reference documentation: [github.com/nathansh/penguinpress-plugin.git](https://github.com/nathansh/penguinpress-plugin.git)
+Please refer to this project's function reference documentation: [nathansh.github.io/penguinpress-plugin](http://nathansh.github.io/penguinpress-plugin/docs)
 
 ## sitename.php
 
