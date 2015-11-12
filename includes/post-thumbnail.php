@@ -3,14 +3,14 @@
 /**
  * These filters are used to change the admin text for post thumbnails.
  * This is useful when 'Add show poster' for example, might be more usefual than
- * 'Set featured image' 
- * 
- * @package d7
+ * 'Set featured image'
+ *
+ * @package pp
  * @subpackage boilerplate-plugin_filters+hooks
  * @internal only called as `gettext` filter
  *
  */
-function d7_change_post_thumbnail_text( $translated_text, $untranslated_text, $domain ) {
+function pp_change_post_thumbnail_text( $translated_text, $untranslated_text, $domain ) {
 
 	$types_to_change = array(
 		'post',
@@ -28,7 +28,7 @@ function d7_change_post_thumbnail_text( $translated_text, $untranslated_text, $d
         case 'Featured Image':
           $translated_text = __( 'Banner photo','vec' );
         break;
-        
+
         case 'Set featured image':
           $translated_text = __( 'Set banner photo','vec' );
         break;
@@ -39,25 +39,25 @@ function d7_change_post_thumbnail_text( $translated_text, $untranslated_text, $d
 
         default:
         	break;
-        
+
      }
 
    }
    return $translated_text;
 }
 
-add_filter('gettext', 'd7_change_post_thumbnail_text', 20, 3);
+add_filter('gettext', 'pp_change_post_thumbnail_text', 20, 3);
 
 
 /**
  * Changes more text around featured images to allow this to be more customzied
- * 
- * @package d7
+ *
+ * @package pp
  * @subpackage boilerplate-plugin_filters+hooks
  * @internal only called as `admin_post_thumbnail_html` filter
  *
  */
-function d7_admin_post_thumbnail_html( $output, $post_id ) {
+function pp_admin_post_thumbnail_html( $output, $post_id ) {
 
 	$types_to_change = array(
 		'post',
@@ -73,4 +73,4 @@ function d7_admin_post_thumbnail_html( $output, $post_id ) {
 
 }
 
-add_filter('admin_post_thumbnail_html', 'd7_admin_post_thumbnail_html', 10, 2 );
+add_filter('admin_post_thumbnail_html', 'pp_admin_post_thumbnail_html', 10, 2 );
