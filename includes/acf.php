@@ -12,8 +12,7 @@
  * @link https://github.com/hoppinger/advanced-custom-fields-wpcli WP-CLI ACF Plugin
  */
 function d7_acfwpcli_fieldgroup_paths( $paths ) {
-	global $plugin_dir_constant_name;
-	$paths[strtolower($plugin_dir_constant_name)] = __DIR__ . '/acf_fields/';
+	$paths[SITE_PLUGIN_NAME] = __DIR__ . '/acf_fields/';
 	return $paths;
   }
 
