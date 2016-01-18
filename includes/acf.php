@@ -5,25 +5,25 @@
  * Allow ACF fields to be stored in the plugin when exported
  * This uses WP-CLI and the WP-CLI ACF plugin
  *
- * @package d7
+ * @package pp
  * @subpackage boilerplate-plugin_filters+hooks
  *
  * @link http://wp-cli.org WP-CLI
  * @link https://github.com/hoppinger/advanced-custom-fields-wpcli WP-CLI ACF Plugin
  */
-function d7_acfwpcli_fieldgroup_paths( $paths ) {
+function pp_acfwpcli_fieldgroup_paths( $paths ) {
 	$paths[SITE_PLUGIN_NAME] = __DIR__ . '/acf_fields/';
 	return $paths;
   }
 
-add_filter( 'acfwpcli_fieldgroup_paths', 'd7_acfwpcli_fieldgroup_paths' );
+add_filter( 'acfwpcli_fieldgroup_paths', 'pp_acfwpcli_fieldgroup_paths' );
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 /**
  * Makes custom fields created with Advanced Custom Fields available in the
  * WP Rest API
  *
- * @package d7
+ * @package pp
  * @subpackage boilerplate-plugin_filters+hooks
  *
  * @link http://wp-api.org WP JSON API documentation
@@ -33,7 +33,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
  * @internal only used as `json_prepare_post` filter
  *
  */
-function d7_add_acf_to_json_api($postaray, $postdata, $context){
+function pp_add_acf_to_json_api($postaray, $postdata, $context){
 
 	if ( function_exists('get_fields') ) {
 		$custom_fields = $postdata['ID'];
@@ -45,7 +45,7 @@ function d7_add_acf_to_json_api($postaray, $postdata, $context){
 }
 
 if ( is_plugin_active('json-rest-api/plugin.php') ) {
-	add_filter('json_prepare_post', 'd7_add_acf_to_json_api',10, 3);
+	add_filter('json_prepare_post', 'pp_add_acf_to_json_api',10, 3);
 }
 
 
@@ -53,7 +53,7 @@ if ( is_plugin_active('json-rest-api/plugin.php') ) {
  * Makes custom fields created with Advanced Custom Fields available in the
  * WP Rest API V2
  *
- * @package d7
+ * @package pp
  * @subpackage boilerplate-plugin_filters+hooks
  *
  * @link http://wp-api.org WP JSON API documentation
@@ -63,7 +63,7 @@ if ( is_plugin_active('json-rest-api/plugin.php') ) {
  * @internal only used as `register_api_field` `get_callback` callback
  *
  */
-function d7_add_acf_to_json_api_v2($object, $field_name, $request){
+function pp_add_acf_to_json_api_v2($object, $field_name, $request){
 	if ( function_exists('get_fields') ) {
 		return get_fields($object['id']);
 	}
@@ -81,7 +81,7 @@ if ( is_plugin_active('rest-api/plugin.php') ) {
 
 				// Register the type's ACF fields
 				register_api_field($slug, 'custom_fields', array(
-					'get_callback' => 'd7_add_acf_to_json_api_v2',
+					'get_callback' => 'pp_add_acf_to_json_api_v2',
 					'update_callback' => null,
 					'schema' => null
 				));

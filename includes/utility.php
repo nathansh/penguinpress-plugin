@@ -10,7 +10,7 @@
  * pre_var($post);
  * </code>
  *
- * @package d7
+ * @package pp
  * @subpackage utility
  * @param mixed $var 	The variable to explore
  *
@@ -35,7 +35,7 @@ if ( !function_exists('pre_var') ) {
  * pre_dump($post);
  * </code>
  *
- * @package d7
+ * @package pp
  * @subpackage utility
  * @param mixed $var 	The variable to explore
  *
@@ -52,7 +52,7 @@ function pre_dump($var = false) {
 /**
  * Check if the site is a local development site. Useful for excluding Google Analytics on local.
  *
- * @package d7
+ * @package pp
  * @subpackage utility
  *
  * @todo make this more bullet proof, also exclude staging.
