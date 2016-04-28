@@ -8,7 +8,7 @@ The contents of this directory should be placed in your plugins directory (usual
 
 ## Function reference
 
-Please refer to this project's function reference documentation: http://domain7.github.io/wp-plugin_boilerplate
+Please refer to this project's function reference documentation: [nathansh.github.io/penguinpress-plugin](http://nathansh.github.io/penguinpress-plugin/docs)
 
 ## sitename.php
 

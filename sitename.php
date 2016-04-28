@@ -7,15 +7,15 @@ Plugin Name: SITE NAME
 Plugin URI: http://SITEURL.com
 Description: Custom functionality, including post types, for SITE NAME.
 Version: 1.0
-Author: Domain7
-Author URI: http://domain7.com
+Author: Nathan Shubert-Harbison
+Author URI: http://nathansh.com
 Text Domain: sitename
 */
 
 
 /**
  * Site name to creating constants.
- * 
+ *
  * Specify an uppercase sitename to be used as the base for constants such as directories.
  * You must edit this value. It should match the plugin directory name/plugin name.
  */
@@ -70,12 +70,12 @@ require_once(constant($plugin_dir_constant_name) . "includes/acf.php");
 require_once(constant($plugin_dir_constant_name) . "includes/post-thumbnail.php");
 
 
-/* 
+/*
 	admin.php adds an admin stylesheet/js file. These are in the plugin directory and the filenames need to be changed
-	to match the plugin name/directory name as follows; 
+	to match the plugin name/directory name as follows;
 
 	.js file: js/pluginname.js
-	.css file: clone sassyplate (git@bitbucket.org:domain7/sassyplate.git) into plugin dir. Name the main file sitename_admin.scss
+	.css file: clone sassyplate (https://github.com/nathansh/sassyplate) into plugin dir. Name the main file sitename_admin.scss
 
 	To use once the files are in place, open admin.php and uncomment the add_action calls
 
