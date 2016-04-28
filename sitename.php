@@ -14,29 +14,27 @@ Text Domain: sitename
 
 
 /**
- * Site name to creating constants.
- *
- * Specify an uppercase sitename to be used as the base for constants such as directories.
- * You must edit this value. It should match the plugin directory name/plugin name.
+ * A unique prefix should be defined, used for all functions and constants.
+ * Create the prefix using lowercase, and it will be converted as needed.
+ * Don't include an underscore.
  */
-
-$site = 'sitename';
+$prefix = 'prefix';
 
 
 // Creates a constant name for the plugin directory.
-$plugin_dir_constant_name = strtoupper($site) . '_PLUGIN_DIR';
+$plugin_dir_constant_name = strtoupper($prefix) . '_PLUGIN_DIR';
 
 
 // Creates the actual site plugin directory constant, and some others
 define($plugin_dir_constant_name, plugin_dir_path( __FILE__ ));
-define("SITE_PLUGIN_NAME", $site);
+define("SITE_PLUGIN_NAME", $prefix);
 
 
 /**
  * Custom post types
  */
 foreach (glob(constant($plugin_dir_constant_name) . "posttypes/posttype-*.php") as $filename) {
-	require_once($filename);
+	// require_once($filename);
 }
 
 
@@ -44,7 +42,7 @@ foreach (glob(constant($plugin_dir_constant_name) . "posttypes/posttype-*.php") 
  * Custom taxonomies
  */
 foreach (glob(constant($plugin_dir_constant_name) . "taxonomies/taxonomy-*.php") as $filename) {
-	require_once($filename);
+	// require_once($filename);
 }
 
 
@@ -53,8 +51,8 @@ foreach (glob(constant($plugin_dir_constant_name) . "taxonomies/taxonomy-*.php")
  */
 
 // If we're using ACF and JSON-REST-API, add custom fields to the API.
-require_once(constant($plugin_dir_constant_name) . "includes/utility.php");
-require_once(constant($plugin_dir_constant_name) . "includes/acf.php");
+// require_once(constant($plugin_dir_constant_name) . "includes/utility.php");
+// require_once(constant($plugin_dir_constant_name) . "includes/acf.php");
 
 
 /*
