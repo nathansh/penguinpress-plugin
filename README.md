@@ -14,6 +14,31 @@ Please refer to this project's function reference documentation: [nathansh.githu
 
 This is the main plugin file. From here all other files are included. The meta info at the top needs to be set with all instances of `SITE NAME` & `sitename` replaced with your project's name.
 
+## Instantiation/dependency management
+
+I'm slowly moving my boilerplates to be a bit more object oriented. I've moved most script loading into a class so we can have some light dependency management. Dependencies can be passed in, and if not met this plugin will display a helpful message and deactivate itself.
+
+This plugin instantiates its class as such:
+
+	require_once 'includes/class-penguinpress-site-plugin.php';
+	add_action( 'plugins_loaded', function() {
+		$penguinpress_site_plugin = new PenguinPress_Site_Plugin( __FILE__ );
+	} );
+
+An `$args` array can be supplied as a second argument, passing in an array of dependencies in the following format:
+
+	$args = array(
+		'dependencies' => array(
+			'penguinpress-utils/penguinpress-utils.php' => array(
+				'title' => 'PenguinPress - Utils',
+				'url' => 'https://github.com/nathansh/penguinpress-utils',
+				'repo' => 'https://github.com/nathansh/penguinpress-utils.git'
+			)
+		)
+	);
+
+	$penguinpress_site_plugin = new PenguinPress_Site_Plugin( __FILE__, $args );
+
 ## Custom Post Types.
 **Location:** `posttypes/postype-TYPE.php`
 
@@ -25,6 +50,10 @@ More information about custom post types: [http://codex.wordpress.org/Function_R
 **Location:** `taxonomies/taxonomy-TERM.php`
 
 Each custom taxonomy is defined in its own file in the `/taxonomies` directory. `template.taxonomy-TAX.php` is a template for creating custom post types. Post type files should be named taxonomy-TAX.php. Each of these files gets automatically included. Each instance of TAX should be replaced with the desired slug.
+
+## Utilities
+Utility functions have been moved to [a separate utilities plugin](https://github.com/nathansh/penguinpress-utils) for ubiquity between plugins and themes.
+
 
 ## Includes Folder
 

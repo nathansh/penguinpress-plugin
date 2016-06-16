@@ -1,4 +1,4 @@
- <?php
+<?php
 /**
  * @package SITE NAME
  */
@@ -12,72 +12,63 @@ Author URI: http://nathansh.com
 Text Domain: sitename
 */
 
-
 /**
- * Site name to creating constants.
+ * Require and instantiate the site plugin class
  *
- * Specify an uppercase sitename to be used as the base for constants such as directories.
- * You must edit this value. It should match the plugin directory name/plugin name.
  */
+require_once 'includes/class-penguinpress-site-plugin.php';
 
-$site = 'sitename';
+add_action( 'plugins_loaded', function() {
 
+	/**
+	 * $args
+	 *
+	 * An `$args` array can be passed as a second argument to the class. Dependencies can be specified in the following format:
+	 *
+	 *  $args = array(
+	 *  	'dependencies' => array(
+	 *  		'penguinpress-utils/penguinpress-utils.php' => array(
+	 *  			'title' => 'PenguinPress - Utils',
+	 *  			'url' => 'https://github.com/nathansh/penguinpress-utils',
+	 *  			'repo' => 'https://github.com/nathansh/penguinpress-utils.git'
+	 *  		)
+	 *  	)
+	 *  );
+	 *
+	 *
+	 */
 
-// Creates a constant name for the plugin directory.
-$plugin_dir_constant_name = strtoupper($site) . '_PLUGIN_DIR';
+	$penguinpress_site_plugin = new PenguinPress_Site_Plugin( __FILE__ );
 
-
-// Creates the actual site plugin directory constant, and some others
-define($plugin_dir_constant_name, plugin_dir_path( __FILE__ ));
-define("SITE_PLUGIN_NAME", $site);
+} );
 
 
 /**
- * Custom post types
+ * options.php allows you to create options/settings screens which you can add acf fields to.
+ *
+ * Uncomment to use.
+ *
  */
-foreach (glob(constant($plugin_dir_constant_name) . "posttypes/posttype-*.php") as $filename) {
-	require_once($filename);
-}
+// require_once( 'includes/options.php' );
 
 
 /**
- * Custom taxonomies
+ * post-thumbnail.php allows you to customize the admin text for post thumbnails
+ *
+ * Uncomment to use
+ *
  */
-foreach (glob(constant($plugin_dir_constant_name) . "taxonomies/taxonomy-*.php") as $filename) {
-	require_once($filename);
-}
+// require_once( 'includes/post-thumbnail.php' );
 
 
 /**
- * Includes
+ * admin.php adds an admin stylesheet/js file. These are in the plugin directory and the filenames need to be changed
+ * to match the plugin name/directory name as follows;
+ *
+ * .js file: js/pluginname.js
+ * .css file: clone sassyplate (https://github.com/nathansh/sassyplate) into plugin dir. Name the main file sitename_admin.scss
+ *
+ * To use once the files are in place, open admin.php and uncomment the add_action calls
+ *
  */
-
-// If we're using ACF and JSON-REST-API, add custom fields to the API.
-require_once(constant($plugin_dir_constant_name) . "includes/utility.php");
-require_once(constant($plugin_dir_constant_name) . "includes/acf.php");
-
-
-/*
-	options.php allows you to create options/settings screens which you can add acf fields to.
-	Uncomment to use.
-	*/
-//require_once(constant($plugin_dir_constant_name) . "includes/options.php");
-
-/*
-	post-thumbnail.php allows you to customize the admin text for post thumbnails
-	Uncomment to use
-	*/
-require_once(constant($plugin_dir_constant_name) . "includes/post-thumbnail.php");
-
-
-/*
-	admin.php adds an admin stylesheet/js file. These are in the plugin directory and the filenames need to be changed
-	to match the plugin name/directory name as follows;
-
-	.js file: js/pluginname.js
-	.css file: clone sassyplate (https://github.com/nathansh/sassyplate) into plugin dir. Name the main file sitename_admin.scss
-
-	To use once the files are in place, open admin.php and uncomment the add_action calls
-
-   */
-//require_once(constant($plugin_dir_constant_name) . "includes/admin.php");
+// require_once( 'includes/admin.php' );
