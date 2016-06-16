@@ -20,24 +20,28 @@ I'm slowly moving my boilerplates to be a bit more object oriented. I've moved m
 
 This plugin instantiates its class as such:
 
-	require_once 'includes/class-penguinpress-site-plugin.php';
-	add_action( 'plugins_loaded', function() {
-		$penguinpress_site_plugin = new PenguinPress_Site_Plugin( __FILE__ );
-	} );
+```php
+require_once 'includes/class-penguinpress-site-plugin.php';
+add_action( 'plugins_loaded', function() {
+	$penguinpress_site_plugin = new PenguinPress_Site_Plugin( __FILE__ );
+} );
+```
 
 An `$args` array can be supplied as a second argument, passing in an array of dependencies in the following format:
 
-	$args = array(
-		'dependencies' => array(
-			'penguinpress-utils/penguinpress-utils.php' => array(
-				'title' => 'PenguinPress - Utils',
-				'url' => 'https://github.com/nathansh/penguinpress-utils',
-				'repo' => 'https://github.com/nathansh/penguinpress-utils.git'
-			)
+```php
+$args = array(
+	'dependencies' => array(
+		'penguinpress-utils/penguinpress-utils.php' => array(
+			'title' => 'PenguinPress - Utils',
+			'url' => 'https://github.com/nathansh/penguinpress-utils',
+			'repo' => 'https://github.com/nathansh/penguinpress-utils.git'
 		)
-	);
+	)
+);
 
-	$penguinpress_site_plugin = new PenguinPress_Site_Plugin( __FILE__, $args );
+$penguinpress_site_plugin = new PenguinPress_Site_Plugin( __FILE__, $args );
+```
 
 ## Custom Post Types.
 **Location:** `posttypes/postype-TYPE.php`
